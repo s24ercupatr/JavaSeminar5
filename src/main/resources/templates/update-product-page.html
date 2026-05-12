@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<h1>Ludzu redige produkta datus</h1>
+	<form method="post" th:object="${product}" th:action="@{/product/crud/update/__${id}__}" >
+	<table>
+		<tr>
+			<td>Nosaukums:</td>
+			<td><input type=text th:field="*{title}"></input></td>
+		</tr>
+
+		<tr>
+			<td>Cena:</td>
+			<td><input type=text th:field="*{price}"></input></td>
+		</tr>
+		
+				<tr>
+			<td>Daudzums:</td>
+			<td><input type=text th:field="*{quantity}"></input></td>
+		</tr>
+		
+				<tr>
+			<td>Apraksts:</td>
+			<td><input type=text th:field="*{description}"></input></td>
+		</tr>
+		
+				<tr>
+			<td>Tips:</td>
+			<td><input type=text th:field="*{productType}"></input></td>
+		</tr>
+
+	</table>
+	 <button type="submit"> Saglabat izmainas</button>
+	
+</form>
+
+
+
+
+</body>
+
+
+</html>
