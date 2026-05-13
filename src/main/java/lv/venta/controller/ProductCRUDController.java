@@ -96,39 +96,32 @@ public class ProductCRUDController {
 			return "error-page";
 		}
 	}
-	
-	
-	@GetMapping("/update/{id}")//localhost:8080/product/crud/update/2
+
+
+	@GetMapping("/update/{id}")
 	public String getUpdateProductById(@PathVariable(name = "id") long id, Model model) {
-		
-		try
-		{
+		try {
 			Product prodFromDB = prodService.retrieveById(id);
 			model.addAttribute("product", prodFromDB);
+			model.addAttribute("id", id);
 			return "update-product-page";
-			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			model.addAttribute("package", e.getMessage());
 			return "error-page";
 		}
-		
 	}
-	
-	
-	//TODO realizet ar validaciju ari seit
+
+
 	@PostMapping("/update/{id}")
-	public String postUpdateProductById(@PathVariable(name = "id") long id, Product product, Model model) {
-		try
-		{
-			prodService.updateById(id, product.getTitle(), product.getPrice(), product.getQuantity(),
-				product.getDescription(), product.getProductType());
-			
-			//ja ir redirect, tad uz url adresi parmet (ne lapu)
-			//TODO ja velas, var ari redirectet uz konkreta produkta lapu redirect:/product/crud/all/id
-			return "redirect:/product/crud/all";
+	public String postUpdateProductById(@PathVariable(name = "id") long id, @Valid Product product, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("id", id);
+			return "update-product-page";
 		}
-		catch (Exception e) {
+		try {
+			prodService.updateById(id, product.getTitle(), product.getPrice(), product.getQuantity(), product.getDescription(), product.getProductType());
+			return "redirect:/product/crud/all";
+		} catch (Exception e) {
 			model.addAttribute("package", e.getMessage());
 			return "error-page";
 		}

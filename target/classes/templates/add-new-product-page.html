@@ -2,37 +2,42 @@
 
 <body>
 
-	<h1>Ludzu redige produkta datus</h1>
-	<form method="post" th:object="${product}" th:action="@{'/product/crud/update/' + ${id}}" >
+	<h1>Ludzu ievadi datus par produktu</h1>
+	<form method="post" th:object="${product}" th:action="@{/product/crud/add}" >
 	<table>
 		<tr>
 			<td>Nosaukums:</td>
 			<td><input type=text th:field="*{title}"></input></td>
+			<td th:if="${#fields.hasErrors('title')}" th:errors="*{title}" >  </td>
 		</tr>
 
 		<tr>
 			<td>Cena:</td>
 			<td><input type=text th:field="*{price}"></input></td>
+			<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" >  </td>
 		</tr>
-
+		
 				<tr>
 			<td>Daudzums:</td>
 			<td><input type=text th:field="*{quantity}"></input></td>
+			<td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" >  </td>
 		</tr>
-
+		
 				<tr>
 			<td>Apraksts:</td>
 			<td><input type=text th:field="*{description}"></input></td>
+			<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}" >  </td>
 		</tr>
-
+		
 				<tr>
 			<td>Tips:</td>
 			<td><input type=text th:field="*{productType}"></input></td>
+			<td th:if="${#fields.hasErrors('productType')}" th:errors="*{productType}" >  </td>
 		</tr>
 
 	</table>
-	 <button type="submit"> Saglabat izmainas</button>
-
+	 <button type="submit"> Saglabat </button>
+	
 </form>
 
 

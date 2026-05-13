@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<h1 th:text="${myHeader}">Visi produkti mana veikala (dati no JAVAS puses):</h1>
+
+	<table>
+		<tr th:each="tempP : ${package}">
+			<td th:text="${tempP.id}"></td>
+			<td th:text="${tempP.title}"></td>
+			<td th:text="${tempP.price}"></td>
+			<td th:text="${tempP.description}"></td>
+			<td th:text="${tempP.quantity}"></td>
+			<td th:text="${tempP.productType}"></td>
+		</tr>
+
+	</table>
+
+</body>
+
+</html>
